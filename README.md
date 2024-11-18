@@ -1,4 +1,4 @@
-# An Appointment Managament System developed using MongoDB, ExpressJs, ReactJs, NodeJs and Razorpay payment gateway
+# Appointment Managament System
 
 For storing images **_CLOUDINARY_** is used and for displaying errors and success messages on frontend **_REACT-TOASTIFY_** is used
 
