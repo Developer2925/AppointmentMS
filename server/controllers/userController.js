@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
     }
 
     // Validating email format
-    if (!validator.isEmail) {
+    if (!validator.isEmail(email)) {
       return res.json({ success: false, message: "Enter a valid email" });
     }
 
@@ -96,23 +96,30 @@ const updateProfile = async (req, res) => {
     if (!name || !phone || !address || !dob || !gender) {
       return res.json({ success: false, message: "Data Missing" });
     }
-    await userModel.findByIdAndUpdate(userId, {
+    const updateFields = {
       name,
       phone,
       address: JSON.parse(address),
       dob,
       gender,
-    });
+    };
 
     if (imageFile) {
-      // upload image to Cloudinary
       const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
         resource_type: "image",
       });
-      const imageURL = imageUpload.secure_url;
-
-      await userModel.findByIdAndUpdate(userId, { image: imageURL });
+      updateFields.image = imageUpload.secure_url;
     }
+
+    await userModel.findByIdAndUpdate(userId, updateFields);
+
+    // Sync updated userData into all existing appointments
+    const updatedUser = await userModel.findById(userId).select("-password");
+    await appointmentModel.updateMany(
+      { userId },
+      { $set: { userData: updatedUser } }
+    );
+
     res.json({ success: true, message: "Profile Updated" });
   } catch (error) {
     console.log(error);
@@ -124,6 +131,10 @@ const updateProfile = async (req, res) => {
 const bookAppointment = async (req, res) => {
   try {
     const { userId, docId, slotDate, slotTime } = req.body;
+
+    if (!slotDate || !slotTime) {
+      return res.json({ success: false, message: "Please select a date and time slot" });
+    }
 
     const docData = await doctorModel.findById(docId).select("-password");
 

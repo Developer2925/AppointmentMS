@@ -17,9 +17,8 @@ const AdminContextProvider = (props) => {
 
   const getAllDoctors = async () => {
     try {
-      const { data } = await axios.post(
+      const { data } = await axios.get(
         backendURL + "/api/admin/all-doctors",
-        {},
         { headers: { aToken } }
       );
       if (data.success) {

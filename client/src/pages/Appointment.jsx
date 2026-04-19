@@ -92,6 +92,10 @@ const Appointment = () => {
       toast.warn("Login to book appointment");
       return navigate("/login");
     }
+    if (!slotTime) {
+      toast.warn("Please select a time slot");
+      return;
+    }
     try {
       const date = docSlots[slotIndex][0].datetime;
 
@@ -189,7 +193,7 @@ const Appointment = () => {
             {docSlots.length &&
               docSlots.map((item, index) => (
                 <div
-                  onClick={() => setSlotIndex(index)}
+                  onClick={() => { setSlotIndex(index); setSlotTime(""); }}
                   key={index}
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer 
                     ${

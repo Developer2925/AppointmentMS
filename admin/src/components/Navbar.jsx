@@ -24,7 +24,7 @@ const Navbar = () => {
     <>
       <div className="flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white">
         <div className="flex items-center gap-3 text-xs">
-          <img src={assets.Hitayu0} alt="" className="w-96 cursor-pointer" />
+          <img src={assets.admin_logo} alt="" className="w-48 cursor-pointer" />
           <p className="border px-2.5 py-0.5 rounded-full border-gray-500 text-gray-600">
             {aToken ? "Admin" : "Doctor"}
           </p>

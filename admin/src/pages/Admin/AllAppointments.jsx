@@ -29,7 +29,7 @@ const AllAppointments = () => {
             <p>Fee</p>
             <p>Action</p>
           </div>
-          {appointments.reverse().map((appointment, index) => (
+          {[...appointments].reverse().map((appointment, index) => (
             <div
               key={index}
               className="flex flex-wrap justify-between max-sm:gap-2 sm:grid 
@@ -40,7 +40,7 @@ const AllAppointments = () => {
                 <img
                   src={appointment.userData.image}
                   alt=""
-                  className="w-8 rounded-full"
+                  className="w-9 h-9 rounded-full object-cover ring-2 ring-indigo-200"
                 />
                 <p>{appointment.userData.name}</p>
               </div>

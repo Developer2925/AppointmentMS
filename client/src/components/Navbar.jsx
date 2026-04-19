@@ -19,12 +19,12 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="flex items-center justify-between text-sm mb-5 border-b border-b-gray-400">
+      <nav className="flex items-center justify-between text-sm py-4 px-4 mb-5 border-b border-b-gray-400">
         <img
           onClick={() => navigate("/")}
-          src={assets.Hitayu0}
+          src={assets.logo}
           alt=""
-          className="w-96 cursor-pointer"
+          className="w-44 cursor-pointer"
         />
         <ul className="hidden md:flex items-start gap-5 font-medium">
           <NavLink to="/">
@@ -50,28 +50,29 @@ const Navbar = () => {
               onClick={() => setShowProfileMenu((prev) => !prev)}
               className="flex gap-1 items-center cursor-pointer group relative"
             >
-              <img src={userData.image} alt="" className="w-10 rounded-full" />
-              <IoMdArrowDropdown className=" text-lg" />
+              <img src={userData.image} alt="" className="w-9 h-9 rounded-full object-cover ring-2 ring-primary/30" />
+              <IoMdArrowDropdown className="text-lg" />
               <div
-                className={`absolute top-0 right-0 pt-16 text-base font-medium text-gray-600 z-20  lg:group-hover:block
+                className={`absolute top-0 right-0 pt-14 text-base font-medium z-20 lg:group-hover:block
                   ${showProfileMenu ? "block lg:hidden" : "hidden"}`}
               >
-                <div className=" min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
+                <div className="min-w-48 bg-white border border-gray-200 rounded-xl shadow-lg flex flex-col gap-1 p-2">
                   <p
                     onClick={(e) => navigate("/my-profile")}
-                    className="hover:text-black cursor-pointer"
+                    className="px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
                   >
                     My Profile
                   </p>
                   <p
                     onClick={(e) => navigate("/my-appointments")}
-                    className="hover:text-black cursor-pointer"
+                    className="px-3 py-2 rounded-lg text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
                   >
                     My Appointments
                   </p>
+                  <hr className="border-gray-100 my-1" />
                   <p
                     onClick={logout}
-                    className="hover:text-black cursor-pointer"
+                    className="px-3 py-2 rounded-lg text-sm text-red-500 hover:bg-red-50 cursor-pointer transition-colors"
                   >
                     Logout
                   </p>
@@ -101,7 +102,7 @@ const Navbar = () => {
             } md:hidden absolute right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all duration-300`}
           >
             <div className="flex items-center justify-between px-4">
-              <img src={assets.Hitayu0} alt="" className="w-72" />
+              <img src={assets.logo} alt="" className="w-36" />
               <IoClose
                 onClick={() => setShowMenu(false)}
                 className="text-3xl"

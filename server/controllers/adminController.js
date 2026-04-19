@@ -40,14 +40,14 @@ const addDoctor = async (req, res) => {
     if (!validator.isEmail(email)) {
       return res.json({
         success: false,
-        messgae: "Please enter a valid email",
+        message: "Please enter a valid email",
       });
     }
     // Validating strong password
     if (password.length < 8) {
       return res.json({
         success: false,
-        messgae: "Please enter strong password upto 8 charactes",
+        message: "Please enter a strong password of at least 8 characters",
       });
     }
 
