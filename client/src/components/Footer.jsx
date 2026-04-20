@@ -39,7 +39,7 @@ const Footer = () => {
         <div>
           <hr />
           <p className="py-5 text-sm text-center text-gray-600">
-            Copyright © 2024 Hitayu - All Right Reserved.
+            Copyright © 2024 Prescripto - All Right Reserved.
           </p>
         </div>
       </div>
